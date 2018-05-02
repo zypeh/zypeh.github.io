@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/" type="image/x-icon"><link rel="stylesheet" href="/stylesheet/brutalist.css"><title>在 Gentoo 环境下搭建 SBCL · Hexo</title><meta name="description" content="在 Gentoo 环境下搭建 SBCL - Hexo"><link rel="search" href="http://yoursite.com/atom.xml" type="application/opensearchdescription+xml" title="Hexo"></head><body><div class="container"><script>window.onscroll = function() {scrollFunction()};
+function scrollFunction(){if(document.body.scrollTop>320||document.documentElement.scrollTop>320){document.getElementById("gotoTop").className=""}else{document.getElementById("gotoTop").className="hidden"}}
+function gotoTop(){document.body.scrollTop = 0;document.documentElement.scrollTop=0}</script><div class="wrapper"><div class="side-nav"><div class="side-nav-inner"><nav><ul><li><a href="/" target="_self">首页</a></li><li><a href="/archives" target="_self">归档</a></li><li><a href="/about" target="_self">关于</a></li></ul></nav><div class="divider-bold"></div></div></div><div class="spacing"><div class="spacing-inner"></div></div><main role="main"><div class="content"><header><div id="title"><h1>在 Gentoo 环境下搭建 SBCL</h1></div><div id="description"><p></p></div><div class="divider-curly"></div></header><article><p><strong>何谓 SBCL</strong> 粗率的说， SBCL （全名为 Steel Bank Common Lisp 是目前较为活跃的 Common Lisp 编译器和运行环境。可扩展与多语言覆盖等功能受到了广大 Lisp 爱好者的青睐。</p>
+<p>目前笨人在学习 Lisp 语言，也来玩个。但是我是用 Gentoo Linux 安装所以就…</p>
+<a id="more"></a>
+<p>首先用 Gentoo 的 <code>portage</code> 保管利器检查看看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo emerge --ask sbcl</div></pre></td></tr></table></figure>
+<p>但是笨人之前遇到类似 SBCL 不能找到我们的 core file。查了查网上，这时只要… touch 一个文件 /etc/env.d/50sbcl 然后打下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SBCL_HOME=/usr/lib/sbcl</div><div class="line">SBCL_SOURCE_ROOT=/usr/lib/sbcl/src</div></pre></td></tr></table></figure>
+<p>然后 update 下环境，清下我们的缓存。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo env-update</div></pre></td></tr></table></figure>
+<p>安装完后，如果没出现问题就行了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sbcl</div></pre></td></tr></table></figure>
+<p>安装完后，如果没出现问题就行了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sbcl</div></pre></td></tr></table></figure>
+<h2><span id="问世间-quicklisp-为何物">问世间 Quicklisp 为何物？</span><a href="#问世间-quicklisp-为何物" class="linea">¶</a></h2>
+<p>Quicklisp 是最流行的 Common-Lisp 函数库管理器，可以 <em>比较</em> 方便地安装所要的函数库。</p>
+<p>安装也是非常的傻瓜化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; mkdir quicklisp &amp;&amp; <span class="built_in">cd</span> quicklisp</div><div class="line">curl -O http://beta.quicklisp.org/quicklisp.lisp</div></pre></td></tr></table></figure>
+<p>下载完后我们 load 它进我们的 SBCL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sbcl --load ~/quicklisp/quicklisp.lisp</div></pre></td></tr></table></figure>
+<p>下载完后我们 load 它进我们的 SBCL 里面。</p>
+<p>依次将以下的命令打下</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="name">quicklisp-quickstart</span><span class="symbol">:install</span>)</div><div class="line">(<span class="name">ql</span><span class="symbol">:add-to-init-file</span>)</div></pre></td></tr></table></figure>
+<p>第一行是要求 SBCL 安装我们的 quicklisp。而第二行是把 quicklisp 写入我们的 SBCL config 文件里，每次启动 SBCL 时自动启动 quicklisp。</p>
+<p>这样就安装完了啦～我们可以随时在终端上阅读 manual ：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">man sbcl</div></pre></td></tr></table></figure>
+</article></div></main><div class="corner_layer"><div class="corner_button"><button id="gotoTop" onclick="gotoTop()" class="hidden"><svg width="16" height="16" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg"><title>回到顶部</title><g><path d="M12.036 15.59c0 .55-.453.995-.997.995H5.032c-.55 0-.997-.445-.997-.996V8.584H1.03c-1.1 0-1.36-.633-.578-1.416L7.33.29c.39-.39 1.026-.385 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.004z" fill-rule="evenodd"></path></g></svg></button></div></div></div></div><footer><p>© 2017 - 2018 <a href="http://yoursite.com">zypeh</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/zypeh/hexo-theme-brutalist" target="_blank">hexo-theme-brutalist</a>.</p><ul><li> <a href="http://yoursite.com">home</a></li><li><a href="/atom.xml">atom</a></li></ul></footer></body></html>
