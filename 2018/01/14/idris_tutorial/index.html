@@ -63,7 +63,7 @@ function gotoTop(){document.body.scrollTop = 0;document.documentElement.scrollTo
 <p>同时 <code>Nil</code> 也可以表示 <code>[]</code></p>
 <p>所以当我们模式匹配的时候。</p>
 <figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="title">isNil</span> : <span class="type">List</span> a -&gt; <span class="type">Bool</span></div><div class="line"><span class="title">isNil</span> []      = <span class="type">True</span></div><div class="line"><span class="title">isNil</span> (x::xs) = <span class="type">False</span></div></pre></td></tr></table></figure>
-<figure>
+<figure class="notes">
 <img src="pattern_matching.png">
 <figcaption>模式匹配的 xs 就是多个 x 的意思。也就是说除了从第二个元素开始的链表</figcaption>
 </figure>
