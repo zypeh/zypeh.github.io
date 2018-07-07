@@ -1,3 +1,55 @@
-<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/" type="image/x-icon"><link rel="stylesheet" href="/stylesheet/brutalist.css"><title>zypeh's blog</title><meta name="description" content="Notes, Research, Experiment"><link rel="search" href="https://zypeh.github.io/atom.xml" type="application/opensearchdescription+xml" title="zypeh's blog"></head><body><div class="container"><script>window.onscroll = function() {scrollFunction()};
-function scrollFunction(){if(document.body.scrollTop>320||document.documentElement.scrollTop>320){document.getElementById("gotoTop").className=""}else{document.getElementById("gotoTop").className="hidden"}}
-function gotoTop(){document.body.scrollTop = 0;document.documentElement.scrollTop=0}</script><div class="wrapper"><div class="side-nav"><div class="side-nav-inner"><nav><ul><li><a href="/" target="_self" class="active">首页</a></li><li><a href="/archives" target="_self">归档</a></li><li><a href="/about" target="_self">关于</a></li></ul></nav><div class="divider-bold"></div></div></div><div class="spacing"><div class="spacing-inner"></div></div><main role="main"><div class="content"><header><h1 class="super">文章</h1></header><ul class="item-list"><li><h2><a href="/2018/05/11/lazy_evaluation/">惰性求值和其特性一讲</a></h2><time>May 11, 2018</time><p>惰性求值和其特性一讲，不定期更新</p></li><li><h2><a href="/2018/01/14/idris_tutorial/">Idris 初学手札</a></h2><time>Jan 14, 2018</time><p>大概介绍所谓的 Idris 编程语言的特点，还有所学到的东西，做个总结。</p></li><li><h2><a href="/2016/01/26/针对 Node 的 Rust 抽象层/">针对 Node 的 Rust 抽象层</a></h2><time>Jan 26, 2016</time><p></p></li><li><h2><a href="/2016/01/23/Python 的优化技巧/">Python 的优化技巧</a></h2><time>Jan 23, 2016</time><p></p></li><li><h2><a href="/2014/01/12/在 Gentoo 环境下搭建 SBCL/">在 Gentoo 环境下搭建 SBCL</a></h2><time>Jan 12, 2014</time><p></p></li></ul></div></main><div class="corner_layer"><div class="corner_button"><button id="gotoTop" onclick="gotoTop()" class="hidden"><svg width="16" height="16" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg"><title>回到顶部</title><g><path d="M12.036 15.59c0 .55-.453.995-.997.995H5.032c-.55 0-.997-.445-.997-.996V8.584H1.03c-1.1 0-1.36-.633-.578-1.416L7.33.29c.39-.39 1.026-.385 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.004z" fill-rule="evenodd"></path></g></svg></button></div></div></div></div><footer><p>© 2017 - 2018 <a href="https://zypeh.github.io">zypeh</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/zypeh/hexo-theme-brutalist" target="_blank">hexo-theme-brutalist</a>.</p><ul><li> <a href="https://zypeh.github.io">home</a></li><li><a href="/atom.xml">atom</a></li></ul></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>767D // ZYPEH</title>
+    <style>:root{--header-font:"Arial Black",Arial,sans-serif;--font:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Sans GB",Arial,sans-serif;--link-highlight-color:#ff0}html{text-rendering:optimizeLegibility}*+*{box-sizing:border-box;margin:0}@media(min-width:35em){.col{display:table-cell}.\31{width:5%}.\33{width:22%}.\34{width:30%}.\35{width:40%}.\32{width:15%}.row{display:table;border-spacing:1em 0}}.row,.w-100{width:100%}.card:focus,hr{outline:0;border:solid var(--primary-color)}.card,pre{padding:1em;border:solid var(--light)}.c{max-width:60em;padding:1em;margin:auto;font:1em/1.6 var(--font)}p{padding:.5em 0}h6{font:300 1em var(--header-font)}h5{font:300 1.2em var(--header-font)}h3{font:300 2em var(--header-font)}h4{font:300 1.5em var(--header-font)}h2{font:300 2.2em var(--header-font)}h1{font:300 2.5em var(--header-font)}a{text-decoration:none}a,a:hover{border-bottom:1px dotted rgba(0,0,0,.5)}a:hover{background:var(--link-highlight-color)}pre{overflow:auto}td,th{padding:1em;text-align:left;border-bottom:solid var(--light)}footer{padding:0 0 3vmin;font-family:var(--font);position:static}</style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121925525-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-121925525-1');
+    </script>
+</head>
+<body>
+    <header style="
+        font-family: Impact, 'Arial Black', 'Arial Rounded MT Bold';
+        font-size: 40em; letter-spacing: 3px; text-align: center;
+        max-width: calc(60em-9px); margin-top: -.19em; color: #1c1c1b;
+        line-height: 1em; overflow-x: scroll; overflow-y: hidden;
+    ">767D</header>
+    <main class="c">
+        <h1 style="margin-bottom: 0">An Extremely Opinionated Site</h1>
+        <small style="font-family: var(--header-font);font-size:1em">767D is an unicode codepoint for a chinese character '白'.<br/>————</small>
+
+        <div style="margin: 1em 0"><a href="/about">About</a></div>
+        <div class="row">
+            <div class="4 col">
+                <p>Hi! My name is Zhengyen Peh and I'm a multi-disciplinary designer and full stack developer from Kuala Lumpur, Malaysia. 🇲🇾</p>
+                <p>From web development side; I'm comfortable with React, Node.js, PostgreSQL. Some of side projects could be seen on Github.</p>
+            </div>
+            <div class="4 col">
+                <p>In the past, I'm a system hacker too. I've made a debugger and firmware to control the AM transmitter. I am learning Rust and Haskell recently.</p>
+                <p>Right now, I'm working closely with a finiancial technology company based in Kuala Lumpur 🇲🇾 — Working as an asscociated Full Stack developer.</p>
+            </div>
+            <div class="4 col">
+                <p>If you've read this far, let's connect. Say hi on Twitter, Instagram, or send a message to zypeh.geek@gmail.com.</p>
+            </div>
+        </div>
+    </main>
+    <footer class=w-100>
+        <div class=c>
+            <h3 style="font-family:Impact,'Arial Black','Arial Rounded MT Bold'; letter-spacing: 3px; line-height: 1; position: relative; text-align: right">
+                <a style="position:absolute; top:1em; font-size:3em">767D</a>
+                <span style="font-size: 10em; padding-left: .6em">/</span>
+                <a style="position:absolute; bottom: 1em">ZYPEH</a>
+            </h3>
+        </div>
+    </footer>
+</body>
+</html>
