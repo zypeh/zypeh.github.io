@@ -8,8 +8,13 @@
     <style>html{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale}*+*{box-sizing:border-box;margin:0}@media(min-width:35em){.col{display:table-cell}.\31{width:5%}.\33{width:22%}.\34{width:30%}.\35{width:40%}.\32{width:15%}.row{display:table;border-spacing:1em 0}}.row,.w-100{width:100%}.card:focus,hr{outline:0;border:solid var(--primary-color)}.card,pre{padding:1em;border:solid var(--light)}.c{max-width:60em;padding:1em;margin:auto;font:1em/1.6 var(--font)}p{padding:.5em 0}h6{font:300 1em var(--font)}h5{font:300 1.2em var(--font)}h3{font:300 2em var(--font)}h4{font:300 1.5em var(--font)}h2{font:300 2.2em var(--font)}h1{font:300 2.5em var(--font)}a{text-decoration:none}a,a:hover{border-bottom:1px dotted rgba(0,0,0,.5)}a:hover{background:var(--link-highlight-color)}pre{overflow:auto}td,th{padding:1em;text-align:left;border-bottom:solid var(--light)}footer{padding:0 0 3vmin;font-family:var(--font);position:static}</style>
     <style>
         :root{
-            --font:-apple-system,BlinkMacSystemFont,Arial,monospace;
+            --font:"Helvetica Neue", Helvetica, Arial, sans-serif;
             --link-highlight-color:#ff0;
+        }
+        .ta { animation: 1.2s ease-out a; animation-fill-mode: both}
+        @keyframes a {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
@@ -23,20 +28,25 @@
 </head>
 <body>
     <header style="
+        display: inline-table; width: 100%;
         font-family: Anton, Impact, 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
         font-size: 45vw; letter-spacing: 3px; text-align: center;
         margin-top: -.1em; color: #1c1c1b;
         line-height: 1em; overflow: hidden;
-    ">767D</header>
+    ">
+        <span class=ta>7</span>
+        <span class=ta>6</span>
+        <span class=ta>7</span>
+        <span class=ta>D</span>
+    </header>
     <main class="c">
         <h1 style="margin-bottom: .5vh; font-size: calc(2.3em + 1vw)">An Extremely Opinionated Site</h1>
-        <small style="font-family: var(--font); font-size: calc(1em + .5vw)">767D is an unicode codepoint for a chinese character '白'.<br/>————</small>
-
+        <small style="font-family: var(--font); font-size: calc(1em + .5vw)">767D is an unicode codepoint for a chinese character '白'.</small>
         <div style="margin: 1em 0"><a href="/about">About</a></div>
-        <div class="row">
+        <div class="row" style="font-size:1em; letter-spacing: -.3px; line-height: 1.3">
             <div class="4 col">
-                <p>Hi! My name is Zhengyen Peh and I'm a multi-disciplinary designer and full stack developer from Kuala Lumpur, Malaysia. 🇲🇾</p>
-                <p>From web development side; I'm comfortable with React, Node.js, PostgreSQL. Some of side projects could be seen on Github.</p>
+                <p>Hi! My name is Zhengyan Peh and I'm a multi-disciplinary designer and full stack developer from Kuala Lumpur, Malaysia. </p>
+                <p>From web development side; I'm comfortable with React, Node.js, PostgreSQL. Some of my side projects could be seen on Github.</p>
             </div>
             <div class="4 col">
                 <p>In the past, I'm a system hacker too. I've made a debugger and firmware to control the AM transmitter. I am learning Rust and Haskell recently.</p>
