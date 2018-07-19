@@ -7,6 +7,7 @@
     <title>767D // ZYPEH</title>
     <style>html{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing: grayscale}*+*{box-sizing:border-box;margin:0}@media(min-width:35em){.col{display:table-cell}.\31{width:5%}.\33{width:22%}.\34{width:30%}.\35{width:40%}.\32{width:15%}.row{display:table;border-spacing:1em 0}}.row,.w-100{width:100%}.card:focus,hr{outline:0;border:solid var(--primary-color)}.card,pre{padding:1em;border:solid var(--light)}.c{max-width:60em;padding:1em;margin:auto;font:1em/1.6 var(--font)}p{padding:.5em 0}h6{font:300 1em var(--font)}h5{font:300 1.2em var(--font)}h3{font:300 2em var(--font)}h4{font:300 1.5em var(--font)}h2{font:300 2.2em var(--font)}h1{font:300 2.5em var(--font)}a{text-decoration:none}a,a:hover{border-bottom:1px dotted rgba(0,0,0,.5)}a:hover{background:var(--link-highlight-color)}pre{overflow:auto}td,th{padding:1em;text-align:left;border-bottom:solid var(--light)}footer{padding:0 0 3vmin;font-family:var(--font);position:static}</style>
     <style>
+        ol, ol li { margin-left: 0; padding-left: 0; list-style: none }
         :root{
             --font:"Helvetica Neue", Helvetica, Arial, sans-serif;
             --link-highlight-color:#ff0;
@@ -15,6 +16,10 @@
         @keyframes a {
             0% { opacity: 0; }
             100% { opacity: 1; }
+        }
+        .l {border-left:1.5px solid #000;padding-left:2em}
+        @media(max-width:35em){
+            .l { border-left: none; padding-left: initial}
         }
     </style>
     <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
@@ -50,15 +55,34 @@
             </div>
             <div class="4 col">
                 <p>In the past, I'm a system hacker too. I've made a debugger and firmware to control the AM transmitter. I am learning Rust and Haskell recently.</p>
-                <p>Right now, I'm working closely with a finiancial technology company based in Kuala Lumpur 🇲🇾 — Working as an asscociated Full Stack developer.</p>
+                <p>Right now, I'm working closely with a finiancial technology company based in Kuala Lumpur — Working as an asscociated Full Stack developer.</p>
             </div>
             <div class="4 col">
                 <p>If you've read this far, let's connect. Say hi on Twitter, Instagram, or send a message to zypeh.geek@gmail.com.</p>
             </div>
         </div>
     </main>
-    <footer class=w-100>
-        <!-- nothing ! -->
+    <div class=w-100 style="padding: 1.5em 0"></div>
+    <footer class=c style="font-family: monospace; margin-top: 3vmax ; margin-bottom: 3vmax">
+        <div class=row style="padding-bottom: 13px; border-top: 1.6px solid #000; border-bottom: 1.5px solid #000;">
+            <div class="8 col">
+                <p><strong>Contacts</strong>
+                <ol>
+                    <li>zypeh.geek@gmail.com</li>
+                    <li>github: <a href="https://github.com/zypeh">zypeh</a></li>
+                </ol></p>
+            </div>
+            <div class="4 col">
+                <div class=l>
+                    <p><strong>Social</strong></p>
+                    <ol>
+                        <li>tt: <a href="https://twitter.com/ZhengyanPeh">@ZhengyanPeh</a></li>
+                        <li>ig: <a href="https://instagram.com/zypeh">zypeh</a></li>
+                        <li>fb: <a href="https://www.facebook.com/zypeh">zypeh</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
