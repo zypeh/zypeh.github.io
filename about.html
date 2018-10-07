@@ -16,16 +16,25 @@
             --link-highlight-background:#ff0;
         }
         .t{font-family: Oswald, Arial, sans-serif;margin:0;line-height:1;letter-spacing:-3px;font-size:3rem}
-        .i{position:fixed}
-        .j{position:relative;margin-left:60%}
+        .i{position:relative}
         .g{list-style-type:none;padding:0}
         .sb{animation: .75s ease-out 0s sa; animation-fill-mode: both}
-        #title{margin-left: 60%}
+        #fst {vertical-align: middle; padding-top: 4rem}
+        .tag {
+            text-align:center;
+            white-space:nowrap;
+            transform-origin:50% 50%;
+            transform: rotate(90deg);
+        }
+        .tag:before {
+            content:'';
+            padding-top:110%;
+            display:inline-block;
+            vertical-align:middle;
+        }
         @media(max-width:815px){
             .i{position:initial}
             .i img{max-width:100% !important;max-height:initial !important}
-            .j{margin-left:0}
-            #title{margin-left:0%}
         }
         @keyframes sa {
             0% { opacity: 0; transform: translateY(-80%) }
@@ -48,34 +57,70 @@
 </head>
 <body>
     <main class=w-100>
-        <div class=row style="position:relative">
-            <div class="5 col i">
+        <div class=row style="color:#1b1b1c">
+            <!-- images here -->
+            <div class="4 col i">
                 <img style="
                     max-width: 100%;
-                    max-height: 33em;
-                    object-fit: cover;
-                    object-position: 50%
-                " src="imgs/about.jpg">
+                " src="imgs/about.jpg" />
             </div>
-            <div style="position:relative">
-                <header id="title" class=c>
-                    <ul style="overflow-y:hidden;list-style-type:none;padding:0;font-size:3.6em;font-family: Oswald, Arial, sans-serif">
-                        <li class=sb><p class="t g">NO TECH</p></li>
-                        <li class=sb><p class="t g">NO GAME</p></li>
-                        <li class=sb><p class="t g">NO LIVE</p></li>
-                    </ul>
-                </header>
+            <div class="1 col" style="vertical-align: middle; position: fixed; padding-top: 4.4rem">
+                <div class=tag>
+                    <a href="/">BACK→</a>
+                </div>
             </div>
-            <div class="j c">
-                <h1 class=sb style="overflow-y:hidden; font-size:1.5em; letter-spacing: -.2px; line-height: 1.2">ABOUT</h1>
-                <article style="color:#111; font-size: 1em; letter-spacing: -.5px; line-height: 1.3">
-                    <p style="margin:0"><strong>767D</strong> is a website, serving glorious, handwritten webpages. Practicing in responsive, interactive content with a focus of design, performance and culture.</p>
-                    <p>This site is designed and managed by Zhengyan Peh. A maker &amp; software engineer based in Kuala Lumpur, Malaysia.</p>
-                    <a href="/" style="margin-top: 1em">Homepage</a>
-                </article>
-            </div>
-        </div>
+            <div class="5 col" id=fst>
+                <div class=c>
+                    <header style="
+                        display: inline-table; width: 100%;
+                        font-family: Anton, Impact, 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
+                        font-size: 4rem; letter-spacing: 3px;
+                        overflow: hidden;
+                        transform: translate3d(0, -.1em, 0);
+                        line-height: 1em;
+                    ">767D</header>
+                    <h1 class=sb style="overflow-y:hidden; font-size:1.5em; letter-spacing: -.2px; line-height: 1.2">ABOUT</h1>
 
+                        <article style="font-size: 1em; letter-spacing: -.5px; line-height: 1.3; margin-top: 2rem">
+                            <p style="margin:0"><strong>767D</strong> is a website, serving glorious, handwritten webpages. Practicing in responsive, interactive content with a focus of design, performance and culture.</p>
+
+                            <h3 style="margin-top: 1.5rem">About Me</h3>
+                            <p>
+                                I'm a engineer at Revenue Monster, a fintech service vendor company where I help design, build, and run our services and maintain our internal tooling.
+                            </p>
+                            <p>
+                                Start coding at 11, like every silicon valley rockstar child developer.
+                                Before that, I am a script kiddie and a GBA game player on PC, emulated.
+                                Yes, I become a daily *nix user and start learning programming languages and engineering skills the day after I accidentally wipe out my netbook's harddisk.
+                            </p>
+                            <p>
+                                Having written software as hobby (and profressionally, of course) for many years now, I am familiar with certain level of "how-computer-works" knowledge, and able to deploy a public-facing API to user.
+                                These days I am especially interested in bringing concise, correct, and performant architecture and software into reality.
+                            </p>
+                            <p>
+                                I believe in building evolutionary architecture that able to adapt rapid changing business logic that built beneath on a correct system and a modern automated process is the future.
+                            </p>
+                            <h3 style="margin-top: 1.5rem">Technology</h3>
+                            <p>
+                                This site consist of a set of HTML and CSS that is handcrafted for performance and flexible. Hosted on Github Pages.
+                                Which mean you can view my every changes of my site easily, by using git protocol.
+                            </p>
+                            <p>
+                                The architecture is so simple that don't need any let-us-party-build-scripts or deployment by CI on Github.
+                            </p>
+
+                            <h3 style="margin-top: 1.5rem">Design</h3>
+                            <p>
+                                I'm a nostalgic (or sentimental) person. I'm also a minimalist person that likes clean, smart, and creative design.
+                                That is why I do adopt "web-brutalism" style for my site.
+                            </p>
+                            <p>
+                                In this site I try to make every thing as simple as possible and functional first. And I believe A system of bold colors unafraid to be mixed with pastels and unusual fonts is meant to stand out and, if used wisely, it will do so for all the right reasons.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            <div class="2 col i"></div>
+        </div>
     </main>
 </body>
-</html>
