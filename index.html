@@ -2,38 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, min-scale=1, max-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>zypeh.io</title>
+    <meta name="description" content="From Kuala Lumpur, the capital city of Malaysia.
+    I am a software engineer that focus on distributed systems, compiler design and programming languages.
+    I am now work for Revenue Monster. At work I write Rust and Go. I am learning Haskell and Prolog.">
+    <meta name="og:description" content="From Kuala Lumpur, the capital city of Malaysia.
+    I am a software engineer that focus on distributed systems, compiler design and programming languages.
+    I am now work for Revenue Monster. At work I write Rust and Go. I am learning Haskell and Prolog.">
+    <meta property="og:title" content="Zheng Yan PEH (zypeh)">
+    <meta property="twitter:card" content="summary">
+    <meta property="og:type" content="website">
+
+    <title>Zhengyan Peh (zypeh)</title>
     <style>
-        @font-face {
-            font-family: 'Inter UI';
-            font-style:  normal;
-            font-weight: 400;
-            src: url("/fonts/InterUI-3.2/Inter-UI-Regular.woff2") format("woff2"),
-                 url("/fonts/InterUI-3.2/Inter-UI-Regular.woff") format("woff");
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: justify;
+            color: #1b1b1c;
         }
-        *+* { margin: 0; }
-        html { font-family: 'Inter UI', Helvatica, Arial, sans-serif; text-rendering: optimizeLegibility; }
-        body { margin: 0; color: #3c4042 }
-        main { max-width: 38rem; padding: 2rem; margin: auto; }
-        h1 { font-size: 4.5rem; line-height: 1; margin-bottom: 10px; font-weight: 700; }
-        p { padding: 1.25rem 0; font-weight: 600; font-size: 2.5rem; line-height: 2.8125rem; letter-spacing: -1.2px; }
-        a { overflow: hidden; outline: none; text-decoration: none; color: #19cf86; }
-        a:hover { color: #216869; }
+
+        header {
+            text-align: center;
+            font-size: 1.16rem;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 70ch;
+            margin: auto;
+        }
+
+        footer {
+            padding-top: 3rem;
+        }
+
+        ul.experience li:not(:first-of-type) {
+            padding-top: 1rem;
+        }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>Zheng Yan PEH<h1>
+    </header>
     <main>
-        <h1>Zhengyan Peh (zypeh)</h1>
-        <div style="padding-top: 1.4rem"><img src="/img/me.jpg" /></div>
-        <p>I'm an engineer at Revenue Monster, a fintech service vendor company where I help design, build, and run our services and maintain our internal tooling.</p>
-        <p>I focus on interactive media arts, software systems, and culture.</p>
-        <p>I believe in writing proofable codes and compile in a sane method, to performant executable is the bright future of programming.</p>
-        <footer>
-            <p>© 2019<br><a href="mailto:zypeh.geek@gmail.com">zypeh.geek@gmail.com</a></p>
-            <p><a href="/articles">Articles</a> · <a href="https://twitter.com/ZhengyanPeh">Twitter</a> · <a href="https://www.instagram.com/zypeh">Instagram</a> · <a href="https://t.me/zypeh">Telegram</a></p>
-        </footer>
+        <summary>
+            From Kuala Lumpur, the capital city of Malaysia.
+            <strong>I am a software engineer that focus on distributed systems, compiler design and programming
+                languages.</strong>
+            I am now work for <a href="https://revenuemonster.my/">Revenue Monster</a>.
+            At work I write Rust and Go. I am learning Haskell and Prolog.
+        </summary>
+
+        <section>
+            <h1>About</h1>
+            <ul>
+                <li><b>EMAIL</b> <a href="mailto:zypeh.geek@gmail.com">zypeh.geek@gmail.com</a></li>
+                <li><b>TWITTER</b> <a href="https://twitter.com/zhengyanpeh">@ZhengyanPeh</a></li>
+                <li><b>CODE</b> <a href="https://github.com/zypeh">github.com/zypeh</a></li>
+                <li><b>INSTAGRAM</b> <a href="https://www.instagram.com/zypeh">instagram.com/zypeh</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1 id="experience">Experience</h1>
+            <ul class="experience">
+                <li>
+                    After graduated from high-school, <strong>I worked as a co-founder in a startup company</strong>.
+                    The startup is a marketplace for students' accommodation. I learnt Node.js and Python to solve real
+                    world problems.
+                </li>
+                <li>
+                    I did <strong>internship at a local design and branding company</strong>.
+                    I got my design skill and frontend engineering there. I help maintaining internal tools and
+                    pipelines.
+                </li>
+                <li>
+                    <strong>During my high-school, my friends and I attended a engineering competition</strong> that
+                    requires us to make a remote controlled boat.
+                    I spent one night to do the state machine to manipulate the motor on two sides of the boat. And we
+                    use a AM transmitter and
+                    solder it on arduino board. That was a hardcore move as other competitors are just modifying the
+                    existing remote controlled
+                    toy boat.
+                </li>
+            </ul>
+        </section>
+
+        <footer>© 2019<br>—— zypeh</footer>
     </main>
 </body>
+
 </html>
