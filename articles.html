@@ -1,1 +1,176 @@
-<!DOCTYPE html><html lang="en"><header charset="utf-8"></header><title>Articles</title><link rel="stylesheet"type="text/css"href="css/articles_page.css"></html><body><main class="x center narrow"><h1>Articles</h1><nav><div><div class="d"><time datetime="2017-06">Jun 2017</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/functions.md">浅谈函数</a></div><div class="diff-year"><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/21%20%E4%B8%96%E7%BA%AA%20C%20%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8D%97%20-%20%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%95%B0%E6%8D%AE.md">21 世纪 C 语言指南 - 值和数据</a></div><div><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/Rust%20%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0%20-%20%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%B1%BB%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.md">Rust 学习杂记 - 类型与类型之间的关系</a></div><div><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/Rust%20%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0%20-%20%E8%AF%AD%E6%B3%95%E4%B8%8E%E8%AF%AD%E4%B9%89.md">Rust 学习杂记 - 语法与语义</a></div><div><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/21%20%E4%B8%96%E7%BA%AA%20C%20%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8D%97%20-%20%E7%BB%93%E6%9E%84.md">21 世纪 C 语言指南 - 结构</a></div><div><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/21%20%E4%B8%96%E7%BA%AA%20C%20%E8%AF%AD%E8%A8%80%E6%8C%87%E5%8D%97%20-%20%E5%89%8D%E8%A8%80.md">21 世纪 C 语言指南 - 前言</a></div><div><div class="d"><time datetime="2016-10">Oct 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/Rust%20%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0%20-%20%E5%89%8D%E8%A8%80.md">Rust 学习杂记 - 前言</a></div><div class="diff-month"><div class="d"><time datetime="2016-08">Aug 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/%E4%B8%AA%E4%BA%BA%E5%B7%A5%E5%85%B7%E7%9A%84%E6%80%BB%E7%BB%93.md">个人工具的总结</a></div><div class="diff-month"><div class="d"><time datetime="2016-03">Mar 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/Polymorhic%20%E7%97%85%E6%AF%92%E7%9A%84%E7%A0%94%E7%A9%B6%E7%AC%94%E8%AE%B0.md">Polymorhic 病毒的研究笔记</a></div><div class="diff-month"><div class="d"><time datetime="2016-01">Jan 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/Python%20%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7.md">Python 的优化技巧</a></div><div><div class="d"><time datetime="2016-01">Jan 2016</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/%E9%92%88%E5%AF%B9%20Node%20%E7%9A%84%20Rust%20%E6%8A%BD%E8%B1%A1%E5%B1%82.md">针对 Node 的 Rust 抽象层</a></div><div class="diff-year"><div class="d"><time datetime="2014-09">Sep 2014</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/2014-09-26-beagle-bone-black-introduce.md">Beagle Bone Black 介绍文</a></div><div class="diff-month"><div class="d"><time datetime="2014-06">Jun 2014</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/2014-6-15-shellcode-tutorial-0x02.md">Shellcode 教程 0x02</a></div><div><div class="d"><time datetime="2014-06">Jun 2014</time></div><a href="https://github.com/zypeh/zypeh.github.io/blob/archive/2014-6-13-shellcode-tutorial-0x01.md">Shellcode 教程 0x01</a></div><div class="diff-month"><div class="d"><time datetime="2014-01">Jan 2014</time></div><a href="/articles/how-to-install-sbcl-on-gentoo-linux">如何在 Gentoo 下搭建 SBCL</a></div></nav></main></body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ZY's articles</title>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            margin: auto;
+            text-align: justify;
+            color: #1b1b1c;
+        }
+
+        .container {
+            display: grid;
+            width: auto;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 3em;
+            list-style-type: none;
+            margin: 2em;
+            padding: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .container {
+                grid-template-columns: .5fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            header {
+                height: 11rem;
+            }
+
+            a:not(:first-of-type) {
+                padding-top: 2em;
+            }
+        }
+
+        .container header {
+            grid-column: 2 / -1;
+            display: flex;
+            align-items: center;
+        }
+
+        .empty {
+            grid-row: 2 / 22;
+            height: auto;
+            width: auto;
+        }
+
+        a {
+            text-decoration: none;
+            display: grid;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #1b1b1c;
+            color: #1b1b1c;
+        }
+
+        a:hover {
+            background-color: yellow;
+            border-bottom: 1px dotted #1b1b1c;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                transform: rotateY(-180deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        @-moz-keyframes spin {
+            0% {
+                transform: rotateY(-180deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        @-o-keyframes spin {
+            0% {
+                transform: rotateY(-180deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotateY(-180deg);
+            }
+
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        .ani a {
+            animation: spin 1.2s 1 ease backwards;
+            transform-style: preserve-3d;
+            transform-origin: -50vw 0;
+        }
+
+        .ani a:nth-of-type(1) {
+            animation-delay: 80ms;
+        }
+
+        .ani a:nth-of-type(2) {
+            animation-delay: 160ms;
+        }
+
+        .ani a:nth-of-type(3) {
+            animation-delay: 240ms;
+        }
+
+        .ani a:nth-of-type(4) {
+            animation-delay: 320ms;
+        }
+
+        .ani a:nth-of-type(5) {
+            animation-delay: 400ms;
+        }
+
+        .ani a:nth-of-type(6) {
+            animation-delay: 480ms;
+        }
+
+        .ani a:nth-of-type(7) {
+            animation-delay: 560ms;
+        }
+    </style>
+    <script>
+        (function () {
+            document.addEventListener("DOMContentLoaded", function () {
+                document.body.classList.add('ani');
+            });
+        }).call(this);
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            zypeh.github.io/<strong>articles</strong>
+        </header>
+        <div class="empty"></div>
+        <a href="/articles/write-yourself-a-goroutine-pool.html">
+            01<br /><br />
+            Write yourself a Goroutine pool.
+        </a>
+    </div>
+</body>
+
+</html>
