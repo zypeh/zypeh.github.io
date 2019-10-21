@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Understanding category theory for haskeller</title>
+
+    <script charset="UTF-8"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/languages/go.min.js"></script>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: left;
+            color: #1b1b1c;
+        }
+
+        header {
+            padding-bottom: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Understanding category theory for haskeller</h1>
+        <time>Oct 20 2019</time>
+    </header>
+    <main>
+        <p style="border-left: 1px dotted #1b1b1c; padding-left: 1em">
+            This is not another monad tutorial. It is just a note for myself to understand how applicative in Haskell
+            works. And I think you should not need any category knowledge to understand this.
+        </p>
+        <p>
+            If you want to understand what a monad is, you should understand how functor works, the definition of it.
+            So the dependency will be:<br /><br /><strong>functor → endofunctor → semigroup → monoid → monad →
+                applicative</strong>.
+        </p>
+
+        <h2>Functor</h2>
+        <p>
+            The functor is a characteristic of data that can be mapped over.
+            It means the data can be generalised if you define the operation that map from this to that, and for the
+            data that has this characteristic will able to map data accordingly. Say, lists, array and trees are things
+            that can be mapped over.
+            <br /><br />
+            The definition of the functor in Haskell is
+        </p>
+        <pre><code>
+        class Functor f where
+            fmap :: (a -> b) -> f a -> f b
+        </code></pre>
+        <p>
+            Where the definition of the map function is
+        </p>
+        <pre><code>
+        map :: (a -> b) -> [a] -> [b]
+        </code></pre>
+        <p>
+            See the differences? <b>fmap only defines the computation between <i>a</i> to <i>b</i></b><a
+                href="#footnote-1"><sup>[1]</sup></a>. Where <b>map</b>
+            only map a list to a list accordingly to the rules it accepted.<br /><br />
+            In other words, for any composite (or complicated data structures), if the typeclass Functor instance is
+            defined, it is a functor automatically.<br /><br />
+            Like <b>Maybe a</b>, the maybe monad
+        </p>
+        <pre><code>
+        data Maybe a = Nothing | Just a
+
+        instance Functor Maybe where
+            fmap f Nothing = Nothing
+            fmap f (Just a) = Just (f a)
+        </code></pre>
+
+        <p>
+            Functors are required to obey certain laws regards to their mappings.
+            <ul>
+                <li>Functors must preserve identity morphisms</li>
+                <li>Functors preserve composition of morphisms</li>
+            </ul>
+
+
+            The morphisms is a term in category theory, it means the transformation (computations) between two
+            data types (catagory).
+        </p>
+
+        <h2>Endofunctor</h2>
+        <p>Endofunctor is a functor that maps a category to itself. Say, for a function that map an integer to string,
+            then it is an endofunction<i>(Int -> String)</i>. It will return the same category also. So the type
+            signature will be</p>
+        <pre><code>
+        endofunction :: (Int -> String) -> (Int -> String)
+        </code></pre>
+        <p>if you generalised it, then</p>
+        <pre><code>
+        endofunctor :: Functor f => f a -> f a
+        </code></pre>
+        <p>
+            It will works for <b>[a]</b> or <b>[[a]]</b> or <b>[[[a]]]</b> ... etc
+            <br /><br />
+            So in purely functional paradigm, the list data structure is basically a typical endofunctor, it has methods
+            like <b>head</b> and <b>tail</b>, and the <b>tail</b> return the list itself, without the head value. So you
+            can consume the list recursively.
+        </p>
+
+        <h2>Semigroup</h2>
+        <p>The semigroup is a characteristic of data that can be appended, and the appended data is a semigroup too.</p>
+
+        <h2>Monoid</h2>
+        <p>The monoid is semigroup with an identity. An identity means empty, say, any natural number plus zero is equal
+            to the natural number itself, the zero is then an identity in the natural number category. Another example is the empty string (<strong>""</strong>).</p>
+
+        <h2>Monad & Applicative</h2>
+        <p style="color: #555"> TO BE CONTINUED </p>
+        <section id="footnote">
+            <h5>Footnotes & References</h5>
+            <ol>
+                <li id="footnote-1"><a
+                        href="http://gelisam.blogspot.com/2014/01/functors-are-computations.html">Functors
+                        are computations</a></li>
+            </ol>
+        </section>
+    </main>
+</body>
+
+</html>
