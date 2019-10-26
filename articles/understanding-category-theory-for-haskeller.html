@@ -27,6 +27,11 @@
         header {
             padding-bottom: 3em;
         }
+
+        h2,
+        #footnote {
+            padding-top: 2em;
+        }
     </style>
 </head>
 
@@ -48,7 +53,7 @@
 
         <h2>Functor</h2>
         <p>
-            The functor is a characteristic of data that can be mapped over.
+            Functor is a characteristic of data that can be mapped over.
             It means the data can be generalised if you define the operation that map from this to that, and for the
             data that has this characteristic will able to map data accordingly. Say, lists, array and trees are things
             that can be mapped over.
@@ -90,43 +95,80 @@
 
 
             The morphisms is a term in category theory, it means the transformation (computations) between two
-            data types (catagory).
+            data types (catagory).<br /><br />
+
+            That 2 laws allow code reusability as for function a -> b, you can get [a] -> [b] in list, <br />Tree a ->
+            Tree b in Tree, ... if you implement the corresponding Functor instance.
         </p>
 
         <h2>Endofunctor</h2>
-        <p>Endofunctor is a functor that maps a category to itself. Say, for a function that map an integer to string,
-            then it is an endofunction<i>(Int -> String)</i>. It will return the same category also. So the type
-            signature will be</p>
+        <p><strong>Endofunctor is a functor that map a category to itself</strong>. The type signature is fairly
+            self-explanatory:</p>
         <pre><code>
-        endofunction :: (Int -> String) -> (Int -> String)
-        </code></pre>
-        <p>if you generalised it, then</p>
-        <pre><code>
-        endofunctor :: Functor f => f a -> f a
+        someEndofunctor :: (a -> b) -> (a -> b)
         </code></pre>
         <p>
-            It will works for <b>[a]</b> or <b>[[a]]</b> or <b>[[[a]]]</b> ... etc
-            <br /><br />
+            For <b>someEndofunctor</b>, if you apply the function <b>f</b> where <b>f: Int -> String</b>, then the
+            result will be <b>f</b> itself.<br /><br />
+
+
             So in purely functional paradigm, the list data structure is basically a typical endofunctor, it has methods
             like <b>head</b> and <b>tail</b>, and the <b>tail</b> return the list itself, without the head value. So you
             can consume the list recursively.
         </p>
 
         <h2>Semigroup</h2>
-        <p>The semigroup is a characteristic of data that can be appended, and the appended data is a semigroup too.</p>
+        <p>Semigroup is a characteristic of data that can be appended, and the appended data is a semigroup too.</p>
 
         <h2>Monoid</h2>
-        <p>The monoid is semigroup with an identity. An identity means empty, say, any natural number plus zero is equal
-            to the natural number itself, the zero is then an identity in the natural number category. Another example is the empty string (<strong>""</strong>).</p>
+        <p>Monoid is semigroup with an identity. An identity means empty, say, any natural number plus zero is equal
+            to the natural number itself, the zero is then an identity in the natural number category. Another example
+            is the empty string (<strong>""</strong>).</p>
 
-        <h2>Monad & Applicative</h2>
-        <p style="color: #555"> TO BE CONTINUED </p>
+        <h2>Monad</h2>
+        <p>
+            Monad is a monoid in the category of endofunctors. It allows programmers to compose the computations in a
+            description (eg <code>IO</code> monad, <code>StateT</code> monad...) as it can make computation to carry
+            data and pass to the computation itself, and then execute (lift) at once. <b>**Hmm, basically an action
+                combinator in program**</b>
+            <br /><br />
+            There is a lot of resources to read
+            <ul>
+                <li><a href="https://en.wikibooks.org/wiki/Haskell/Understanding_monads/State">Understanding monads</a>
+                </li>
+                <li><a href="https://wiki.haskell.org/All_About_Monads">All about monad from Haskell Wiki</a></li>
+            </ul>
+        </p>
+
+        <h2>Applicative</h2>
+        <p>
+            Applicative are added in Haskell codebase after Monad, but actually it is another special case of
+            functor.<br /><br />
+            We can have a look from this <b>flip</b> <code>($)</code> function's type signature:
+        </p>
+        <pre><code>
+        ( $ ) ::                    (a -> b) ->   a ->   b
+        (<$>) :: Functor     f =>   (a -> b) -> f a -> f b
+        (<*>) :: Applicative f => f (a -> b) -> f a -> f b
+        </code></pre>
+
+        <p>
+            Applicative is technically a functor that has more structure than a functor but less than a monad.
+            <sup><a href="#footnote-2">2</a></sup>It is an intermediate class between Functor and Monad.
+        </p>
+
+        <p>
+            Applicative are widely used class to compose computations without context.
+            <a href="https://en.wikibooks.org/wiki/Haskell/Applicative_functors#Application_in_functors">Examples</a>
+        </p>
+
         <section id="footnote">
             <h5>Footnotes & References</h5>
             <ol>
                 <li id="footnote-1"><a
                         href="http://gelisam.blogspot.com/2014/01/functors-are-computations.html">Functors
                         are computations</a></li>
+                <li id="footnote-2"><a href="https://wiki.haskell.org/Applicative_functor">Applicative functor</a></li>
             </ol>
         </section>
     </main>
