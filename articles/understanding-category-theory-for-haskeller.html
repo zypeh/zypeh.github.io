@@ -159,9 +159,62 @@
 
         <p>
             Applicative are widely used class to compose computations without context.
-            <a href="https://en.wikibooks.org/wiki/Haskell/Applicative_functors#Application_in_functors">Examples</a>
+            <a href="https://en.wikibooks.org/wiki/Haskell/Applicative_functors#Application_in_functors">For
+                example:</a>
         </p>
 
+        <pre><code>
+        -- Maybe is a monad and can pass a generalised a to it
+        data Maybe a = Nothing | Just a
+        </code></pre>
+
+        <pre><code>
+        Prelude> 2 + 3
+        5
+
+        Prelude> (Just 2) + (Just 3)
+        error:
+            • Non type-variable argument in the constraint: Num (Maybe a)
+              (Use FlexibleContexts to permit this)
+            • When checking the inferred type
+                it :: forall a. (Num a, Num (Maybe a)) => Maybe a
+        </code></pre>
+
+        <p>
+            As the error stated, we should have a function and a value both wrapped in <code>Maybe</code> monad.
+            So we change our code to this:
+        </p>
+        <pre><code>
+        Prelude> ((+) <$> Just 2) <*> Just 3
+        Just 5
+
+        Prelude> (Just (+2)) <*> Just 3
+        Just 5
+        </code></pre>
+
+        <p>
+            <b>(<*>)</b> is one of the methods of Applicative, the type class of applicative functors - functors that
+            support function application within their contexts. Expressions such as
+            <code>(+) <$> Just 2 <*> Just 3</code> are said
+            to be written in applicative style, which is as close as we can get to regular function application
+            while working with a functor. If you pretend for a moment the <b>(<$>)</b>, <b>(<*>)</b> and <b>Just</b>
+            aren't there, our example looks just like <code>(+) 2 3</code>
+        </p>
+
+        <h2>Haskell pattern</h2>
+        <p>
+            Haskellers do like use operators (one word function, aw). Often, Haskell operators are similar and comes
+            with a definite pattern.
+
+            <ul>
+                <li><code>f $ x</code> means <b>f applied to x</b>.</li>
+                <li><code>x & f</code> means <b>f applied to x</b> too. Just like chain operator in F# or future Javascript <b>(|>)</b></li>
+                <li><code>f <$> x</code> means <b>map f over x</b>.</li>
+                <li><code>x <&> f</code> means <b>map f over x</b> too.</li>
+            </ul>
+
+            <p>So the &lt;<i>operator</i>&gt; means the map over of the operator itself.</p>
+        </p>
         <section id="footnote">
             <h5>Footnotes & References</h5>
             <ol>
