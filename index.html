@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, min-scale=1, max-scale=1, shrink-to-fit=no">
@@ -14,15 +15,13 @@
     <meta property="twitter:card" content="summary">
     <meta property="og:type" content="website">
 
-    <title>Zhengyan Peh (zypeh)</title>
+    <title>Zhengyan PEH (zypeh)</title>
     <style>
-        @import url('https://rsms.me/inter/inter.css');
-
         body {
-            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            font-family: Helvatica, Arial, sans-serif;
             text-rendering: optimizeLegibility;
 
-            font-size: 85%;
+            font-size: 14px;
             max-width: 38rem;
             padding: 1.5rem;
             margin: auto;
@@ -41,19 +40,25 @@
             margin: auto;
         }
 
-        aside {
-            border: 1px double #1b1b1c;
-            display: flex;
-            justify-content: space-evenly;
-            line-height: 1.6;
-            margin-top: 1em;
-        }
         footer {
             padding-top: 3rem;
         }
 
         ul.experience li:not(:first-of-type) {
             padding-top: 1rem;
+        }
+
+        nav ul li {
+            display: inline-block;
+            line-height: 1.8;
+        }
+
+        nav ul li a {
+            padding: .5em;
+        }
+
+        h1 {
+            margin-bottom: .3rem;
         }
     </style>
 </head>
@@ -62,6 +67,11 @@
     <header>
         <h1>Zheng Yan PEH<h1>
     </header>
+    <nav>
+        <ul>
+            <li><a href="/articles.html">Articles</a></li>
+        </ul>
+    </nav>
     <main>
         <summary>
             From Kuala Lumpur, the capital city of Malaysia.
@@ -70,38 +80,28 @@
             I am now work for <a href="https://revenuemonster.my/">Revenue Monster</a>.
             At work I write Rust and Go. I am learning Haskell and Prolog.
         </summary>
-
-        <aside>
-            <a href="articles.html">Articles</a>
-        </aside>
-        
-        <section>
-            <h1>About</h1>
-            <ul>
-                <li><b>EMAIL</b> <a href="mailto:zypeh.geek@gmail.com">zypeh.geek@gmail.com</a></li>
-                <li><b>TWITTER</b> <a href="https://twitter.com/zhengyanpeh">@ZhengyanPeh</a></li>
-                <li><b>CODE</b> <a href="https://github.com/zypeh">github.com/zypeh</a></li>
-                <li><b>INSTAGRAM</b> <a href="https://www.instagram.com/zypeh">instagram.com/zypeh</a></li>
-            </ul>
-        </section>
+        <p>
+            You can find my thoughts on <a href="https://twitter.com/zhengyanpeh">twitter</a>. My code on
+            <a href="https://github.com/zypeh">github</a>. Sometimes I will write content in Chinese.
+        </p>
 
         <section>
             <h1 id="experience">Experience</h1>
+            <summary>I have worked with design, the web, servers, systems, algorithms, programming languages, and
+                entrepreneurship.</summary>
             <ul class="experience">
+                <li>I am responsible for the <strong>Functional Programming Club Malaysia</strong>.</li>
                 <li>
-                    After graduated from high-school, <strong>I worked as a co-founder in a startup company</strong>.
-                    The startup is a marketplace for students' accommodation. I learnt Node.js and Python to solve real
-                    world problems.
+                    After graduated from high-school, <strong>I worked as a co-founder and a tech lead in a startup
+                        company</strong>.
+                    The startup is a marketplace for students' accommodation. I build and design a solution to solve
+                    problems
                 </li>
                 <li>
-                    I did <strong>internship at a local design and branding company</strong>.
-                    I got my design skill and frontend engineering there. I help maintaining internal tools and
-                    pipelines.
-                </li>
-                <li>
-                    <strong>During my high-school, my friends and I attended a engineering competition</strong> that
+                    <strong>During my highschool, attended a engineering competition</strong> that
                     requires us to make a remote controlled boat.
-                    I spent one night to do the state machine to manipulate the motor on two sides of the boat. And we
+                    I spent one night to do the state machine to manipulate the motor on two sides of the boat. And
+                    we
                     use a AM transmitter and
                     solder it on arduino board. That was a hardcore move as other competitors are just modifying the
                     existing remote controlled
@@ -110,7 +110,7 @@
             </ul>
         </section>
 
-        <footer>© 2019<br>—— zypeh</footer>
+        <footer>© 2020<br>—— zypeh</footer>
     </main>
 </body>
 
