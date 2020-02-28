@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浅谈货币金额类型的存储方式</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WYN9NX50KS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-WYN9NX50KS');
+    </script>
+    <link rel="canonical" href="https://zypeh.github.io">
+    <meta name="description" content="Hi, I'm Zheng Yan PEH. And this is my past experience.">
+    <meta name="og:description" content="Hi, I'm Zheng Yan PEH. And this is my past experience.">
+    <meta property="og:title" content="Zheng Yan PEH (zypeh)">
+    <meta property="og:site_name" content="zypeh's blog">
+    <meta property="og:url" content="https://zypeh.github.io">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@ZhengYanPeh">
+    <meta property="twitter:creator" content="@ZhengYanPeh">
+    <meta property="og:type" content="website">
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: left;
+            color: #1b1b1c;
+        }
+
+        header {
+            padding-bottom: 3em;
+        }
+
+        h2,
+        #footnote {
+            padding-top: 2em;
+        }
+
+        summary {
+            margin-top: 2em;
+            border-left: 1px dotted #1b1b1c;
+            padding-left: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>浅谈货币金额类型的存储方式</h1>
+        <time>Feb 28 2020</time>
+        <summary>迈向国际化的我们，到现在经济学还没确立一个真正的绝对价值尺度。所以我们还是乖乖地存储法定货币面值吧。电脑存储方式难免有异于数学，究竟要怎样才能完美存储货币数据类型呢？</summary>
+    </header>
+    <main>
+        <p>看看你的银行存款。</p>
+        <p><i>MYR 3100.53</i></p>
+        <p>你拥有三千一百马币又五十三仙。这就是你储蓄在银行户口的数额，也是你能够交易和提现的最大数额。</p>
+        <p>你从日本购买最新的 Evangelion Metal Build 模型，价值 24200 日元。你做了个网上交易，你的户口少了 938.05
+            马币。这下你知道，<strong>货币能随着货币价值而转换成不同的货币</strong>。</p>
+        <p>这下你打开电脑，准备用你的储蓄的一部分，1000 马币来投资 Bitcoin。经过代理商，你成功换取了 0.027 BTC 的加密货币。这下你知道，<strong>各个货币的最小可表达数额是不一样的</strong>。
+        </p>
+        <p>不管社会给予货币怎样的价值和看法，身为个程序员当然要扮演一个重要的角色来保证货币数额的转换和操作万无一失，正确。</p>
+        <hr />
+
+
+        <h2>让我们把货币金额最小可表达单位存储起来</h2>
+        <p>日元最小单位是 1 元，可是在马来西亚我们的最小单位是 1 仙，我们存储起来，然后标示这个货币的名字。</p>
+        <pre>
+            <code>
+                type MonetaryValue struct {
+                    name: string
+                    val: uint64
+                }
+            </code>
+        </pre>
+        所以我们可以重用我们的代码，做一个
+        <pre>
+            <code>
+                func mkMoney(name string, val uint64) MonetaryValue {
+                    ... snip ...
+                }
+            </code>
+        </pre>
+
+        <p>在马来西亚我们的 100 仙是等价于 1 马币的，在日元并没有这样的浮点数操作，所以我们可以忽略不计。
+            对于不同的货币要写不同的操作方式，这就开始显得聒噪了，因为每个货币都有自己的操作。而当你要显示的时候你需要做乘除的步骤。</p>
+        <p>因此你可能为了隔离各种操作（比如说把日元的操作只限制在日元里面），而重新把我们的 struct 写成不同的 class 然后把操作放进去 class 里面当 method 用。</p>
+        <p>在大部分的情况用整数来表达金额是没有关系的，可是使用整数并不能够完全满足我们的需求。</p>
+        <p>使用整数类型并不能很好地表达各种中间计算的过程，比如说 2/3 仙。如果是这样的情况，会由于我们的存储类型限制，被迫要做 round up 和 round down 的步骤，这个在 reporting
+            的时候会产生<b>非常非常大</b>的问题，因此这方法是不能够被接受的。</p>
+        <p>举个例子，如果我们没有保留中间计算的数据，那么如果有一百万个价值 USD$0.03 的物品经过 50% 折扣，那么区区 round up 和 round up 的过程会导致差别在 $10,000, $15,000 或是
+            $20,000 的差别！</p>
+
+        <h2>好吧，为了保留中间计算的过程而把金额存储成浮点数</h2>
+        <p>就字面意思，直接存储面值。</p>
+        <pre>
+            <code>
+                type MonetaryValue struct {
+                    name: string
+                    val: float64
+                }
+            </code>
+        </pre>
+        <p>这下就简单很多了，可是要记得我们的浮点运算其实是通过有限的空间来表达近似显示的数值，所以我们会在不同的编程语言标准库里面得到不同的结果，而这个结果的原因来自于他们遵循着不同的标准。</p>
+        <pre>
+            <code>
+            /// https://golang.org/src/math/big/float.go L134-141
+
+            // These constants define supported rounding modes.
+            const (
+                ToNearestEven RoundingMode = iota // == IEEE 754-2008 roundTiesToEven
+                ToNearestAway                     // == IEEE 754-2008 roundTiesToAway
+                ToZero                            // == IEEE 754-2008 roundTowardZero
+                AwayFromZero                      // no IEEE 754-2008 equivalent
+                ToNegativeInf                     // == IEEE 754-2008 roundTowardNegative
+                ToPositiveInf                     // == IEEE 754-2008 roundTowardPositive
+            )
+
+
+            Python 3.7.3 (default, Mar 27 2019, 09:23:15)
+            [Clang 10.0.1 (clang-1001.0.46.3)] on darwin
+            Type "help", "copyright", "credits" or "license" for more information.
+            >>> 0.1 + 0.6
+            0.7
+            >>> 0.01 + 0.06
+            0.06999999999999999
+                `--- 因为浮点数的进位偏差导致结果的不一样
+            </code>
+        </pre>
+
+        <h2>那么我们想个方式来存储这样的中间结果，再转成浮点数运算吧！</h2>
+        <p>在 Haskell 社区人们用着 <b>Rational</b> (有理数）的方式来表达数值运算中间结果，但是表达这样的数需要两个数据，numerator 和
+            denominator，也就我们所谓的分子和分母。所以要表达 0.5 USD cents 的话我们写成如下就行了:
+        </p>
+        <pre>
+            <code>
+            > (1 % 2) * (1 % 100) :: Rational
+            1 % 200
+            </code>
+        </pre>
+        <p>Rational 类型和 Rational 类型的操作生成 Rational 类型的数据，然后这些计算过程到最后才转换成 <b>Real</b> 或是我们常见的浮点数/整数。</p>
+        <p>这样诡异的存储方式有什么特点呢？嗯哼，它就是所谓的有理数，表达比值，然后这个比值可能是个无限小数或是个循环小数。我们可以得到完美无损的数值，然后才来转换或是取我们要的小数位。它本身就是个任意精度数值。</p>
+        <p>但是 Rational 也是个抽象数据结构，我们需要记录两个数才能真正 capture 到这个数值。有几个明显的缺点让我们不能使用这个数据结构来表示我们的金额。</p>
+        <p>
+            <ol>
+                <li>
+                    <p>Rational 抽象数据结构并不能很好地映射到数据库的基本数据类型</p>
+                </li>
+                <li>
+                    <p>Rational 类型之间的操作非常慢，至少比指针长度整数类型呈 100 倍的慢<a href="#footnote-1"><sup>[1]</sup></a>。这在 HFT
+                        项目是不会被考虑的。</p>
+                </li>
+            </ol>
+        </p>
+
+
+
+
+        <h2>理想中的货币金额存储方式</h2>
+        <p>目前为止个人在实验各种编程语言并尝试用 Rust 或是 Haskell 来编写这样的库，之所以在这篇里面用 Go 语言来示范纯粹是因为我会。</p>
+        <p>在我写的这篇的时候我看到了 fpco 的 <strong>safe-decimal</strong><a href="#footnote-2"><sup>[2]</sup></a> 库，这个是目前我看到最好的了。
+        </p>
+        <p>我个人理想中的货币金额存储方式需要在类型上标示不同的 rounding 方式。同时能够用原生数据类型来存储，在运行时检查边界问题，然后抛出 <i>overflow （超出金额边界）</i>和 <i>underflow
+                （低于最小可表达金额）</i>错误。</p>
+
+        <p>从 <strong>safe-decimal</strong> 库里面还能看到一个很酷的想法就是它能够让程序员表达进位“数”。</p>
+
+        <pre>
+            <code>
+                > x = Decimal 12345 :: Decimal RoundHalfUp 4 Integer
+                                                |         |    |
+                                                |         |    ` 存储类型
+                                                |         |
+                                                |         ` 进位“数”，比如说取小数点后四位数
+                                                `-- Rounding 策略
+
+
+                > x
+                1.2345
+                > x * 5
+                6.1725
+
+                > roundDecumal (x * 5) :: Decimal RoundHalfUp 3 Integer
+                6.173
+            </code>
+        </pre>
+
+        <p>其中一个当然是边界问题，还有除于 0 问题。当然要有个别不同的错误信息，这些不多说。值得一提的是边界要让用户能够自定义才行。举个例子，比特币有着货币总量限制： 两千一百万 (21
+            Mil)，最小能够表达的金额是小数点后八位数 (0.00000001 BTC)。除非你在逻辑层编写这样的检查，不然还是交给运行时处理会更好。（这里本人也是交了学费才学到）</p>
+
+
+        <h2>那么银行还是那些程序员是怎样应付这些金钱操作的？</h2>
+        <p>根据我有限的金融领域的工作经验，没有监管部门会要求程序员做完美的有理数操作。他们想要的是一个稳定的，维持一致的整数运算，它们甚至会发布一套很 “trivial” 的 rounding
+            规则<a href="#footnote-3"><sup>[3]</sup></a>让各个收取货币的商家参考并使用（主要是让中小型企业收取现金，找零钱的时候方便计算）。就算有所谓的四舍五入和 rounding
+            偏差，我想已经被纳入这些考量中被考虑了。</p>
+    </main>
+    <section id="footnote">
+        <h4>注解和参考资料</h4>
+        <ol>
+            <li id="footnote-1"><a href="https://github.com/haskell-perf/numbers">Benchmarks for numbers: ints, doubles,
+                    bignums rationals, etc.
+                </a></li>
+            <li id="footnote-2"><a href="https://tech.fpcomplete.com/blog/safe-decimal-right-on-the-money">Decimal
+                    safety right on the money</a></li>
+            <li id="footnote-3"><a href="https://www.bnm.gov.my/index.php?ch=en_misc&pg=en_archive&ac=506">马来西亚的货币
+                    rounding 舍入机制</a></li>
+            <li><a href="https://ren.zone/articles/safe-money">safe-money - Money is the type system
+                    where it belongs</a></li>
+        </ol>
+    </section>
+</body>
