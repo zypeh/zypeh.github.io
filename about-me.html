@@ -50,7 +50,7 @@
             padding: 2rem 0;
             line-height: 1.1875;
             margin: 0;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
         }
 
         section {
@@ -66,9 +66,6 @@
             line-height: 1.1;
             padding-top: 3rem;
             padding-bottom: 1rem;
-            font-weight: 900;
-            font-style: italic;
-            color: #820263;
         }
 
         h2,
@@ -78,7 +75,7 @@
         }
 
         hr {
-            border: 2px solid #333;
+            border: 1px solid #333;
         }
 
         .details {
@@ -102,13 +99,12 @@
             padding: 0
         }
 
-        ::selection {
-            color: #43C59E;
+        .experience p:not(:nth-of-type(1)) {
+            padding-top: 1rem;
         }
 
-        #misc .header h2 {
-            color: #0007;
-            font-size: 1rem;
+        ::selection {
+            color: #43C59E;
         }
 
         .past h2 {
@@ -146,10 +142,6 @@
             .experience h3 {
                 padding-top: 0;
             }
-
-            .experience p:not(:nth-of-type(1)) {
-                padding-top: 1rem;
-            }
         }
 
         @media only screen and (max-width: 479px) {
@@ -164,10 +156,12 @@
 
 <body>
     <main>
-        <h1>About Zheng Yan PEH</h1>
-        <p>I have experience in both frontend and backend development, and entrepreneurship too.</p>
-        <p>I now live in Kuala Lumpur and work for Revenue Monster.</p>
-        <p>At work I write Go and Rust, currently I am learning Haskell and Coq.</p>
+        <header>
+            <h2>About Zheng Yan PEH</h2>
+            <p>I have experience in both frontend and backend development, and entrepreneurship too.</p>
+            <p>I now live in Kuala Lumpur, Malaysia. And I am available for hire.</p>
+            <p>Currently I am learning Haskell and working on a hobby compiler.</p>
+        </header>
         <hr>
         <section id="experiences">
             <div class="details">
@@ -209,15 +203,7 @@
                     <h2>Historical Affiliations</h2>
                 </div>
                 <div class="past">
-                    <h2>
-                        I am one of the main speaker in Functional Programming Club Malaysia.
-                    </h2>
-                    <h2>
-                        During my highschool, I have attended an engineering competition that requires us to make a
-                        remote controlled boat. I spent one night to do the state machine to manipulate the motor on two
-                        sides of the boat. And we use a AM transmitter and solder it on arduino board. That was a
-                        hardcore move as other competitors are just modifying the existing remote controlled toy boat.
-                    </h2>
+                    <p>I am one of the main speaker in Functional Programming Club Malaysia.</p>
                 </div>
             </div>
         </section>
