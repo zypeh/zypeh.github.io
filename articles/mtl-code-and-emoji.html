@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monad Transformer explained in code and emojis</title>
+    <link rel="canonical" href="https://zypeh.github.io">
+    <meta name="description" content="Monad Transformer explained in code and emojis">
+    <meta name="og:description" content="Monad Transformer explained in code and emojis">
+    <meta property="og:title" content="Zheng Yan PEH (zypeh)">
+    <meta property="og:site_name" content="zypeh's blog">
+    <meta property="og:url" content="https://zypeh.github.io">
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:site" content="@ZhengYanPeh">
+    <meta property="twitter:creator" content="@ZhengYanPeh">
+    <meta property="og:type" content="website">
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 95%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: left;
+            color: #1b1b1c;
+        }
+
+        code {
+            font-size: 1.16rem;
+        }
+
+        header {
+            padding-bottom: 3em;
+        }
+
+        h2,
+        #footnote {
+            padding-top: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Monad Transformer <br />explained in code and emojis</h1>
+        <time>Apr 28 2020</time>
+    </header>
+    <main>
+        <p style="border-left: 1px dotted #1b1b1c; padding-left: 1em">
+            Inspired by a <a href="https://twitter.com/smdiehl/status/1254769964906500097">tweet</a> from Stephen Diehl.
+            Plus I am learning Monad Transformer at this moment. So I would like to write some note here.
+        </p>
+
+        <h2>Data and its constructor</h2>
+        <pre><code>
+        data 🤔 = 🥵 | 🥶
+        </code></pre>
+        <p>We can say 🤔 is a data type which is either 🥵 or 🥶.<sup>1</sup></p>
+
+        <pre><code>
+        data 🤨 🎁 = 🙂 🎁 | 🙁
+        </code></pre>
+        <p>🤨 is parameterized type which will take a parameter (🎁) and results in either
+            🙂 🎁 or 🙁. It is parameterized because its result is depends on the parameter it received.</p>
+
+        <pre><code>
+        sendGiftHappily :: 🎁 -> 🤨 🎁
+        sendGiftHappily 🧸 = 🙂 🧸
+
+        didNotReceiveOne :: 🤨 🎁
+        didNotReceiveOne = 🙁
+        </code></pre>
+
+        <p>Both 🙂 and 🙁 is a constructor of 🤨. The 🤨 would not exist if there is no constructor of it.</p>
+
+        <p>Constructor builds values.</p>
+
+        <h2>Monad</h2>
+        <pre><code>
+        class Monad 🤨 where
+            return :: 🎁 -> 🤨 🎁
+            (>>=) :: 🤨 🎁 -> (🎁 -> 🤨 🔎) -> 🤨 🔎
+        </code></pre>
+        <p>We define the properties of 🤨 type constructor based on the monad. As monad's
+            minimal complete definition is the (>>=) function.</p>
+
+        <pre><code>
+        instance Monad 🤨 where
+            return 🧸 = 🙂 🧸
+        </code></pre>
+        <p>Basically it is the same as the function <code>sendGiftHappily</code>. It wrap the value with 🙂.</p>
+
+        <pre><code>
+            instance Monad 🤨 where
+                m >>= someFunc = case m of
+                    🙁    = 🙁
+                    🙂 🧦 = someFunc 🧦
+        </code></pre>
+        <p>(>>=) is an function operator that, when it received 🙁, no matter what is the second parameter, it will
+            returns 🙁; when it received 🙂 with a value, then it apply the value to the second parameter
+            (<code>someFunc</code>).</p>
+        <p>(>>=) is also known as "bind"</p>
+
+        <pre><code>
+            (>>=) :: 🤨 🎁 -> (🎁 -> 🤨 🔎) -> 🤨 🔎
+        </code></pre>
+        <p>From the type signature of the bind operator, it does not change the underlying data structure, it just
+            change the way it maps, by returning the 🤨 data type, but a different value.</p>
+
+        <h2>State representation</h2>
+        <h2>Monad Transformer</h2>
+    </main>
+</body>
+
+</html>
