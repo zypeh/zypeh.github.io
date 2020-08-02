@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBCL setup in Gentoo (2014)</title>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: left;
+            background: #fff8e7;
+            color: #1b1b1c;
+        }
+
+        header {
+            padding-bottom: 3em;
+        }
+
+        h2,
+        #footnote {
+            padding-top: 2em;
+        }
+
+        summary {
+            margin-top: 2em;
+            border-left: 1px dotted #1b1b1c;
+            padding-left: 1em;
+        }
+
+        pre {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SBCL setup in Gentoo</h1>
+        <time>Jan 12 2014</time>
+        <summary>In summary, SBCL (aka Steel Bank Common Lisp) is the most active developed and performant Common Lisp runtime / interpreter. It is widely adopted in lisp user communities. But I found some issue installing it on my Gentoo machine, here is my solution...</summary>
+    </header>
+    <main>
+        <p>Installing it via <b>portage</b>, the default gentoo package manager.</p>
+        <pre><code>
+            sudo emerge --ask sbcl
+        </code></pre>
+
+        <p>It will shows some error messaging showing that <b>core file not found</b>. It is because
+        it is looking at a wrong /usr directory.</p>
+
+        <p>The solution is quite simple, just change our environment variable in Gentoo.</p>
+        <pre><code>
+            touch /etc/env.d/50sbcl
+            echo 'SBCL_HOME=/usr/lib/sbcl' >> /etc/env.d/50sbcl
+            echo 'SBCL_SOURCE_ROOT=/usr/lib/sbcl/src' >> /etc/env.d/50sbcl
+        </code></pre>
+
+        <p>And update the Gentoo environemnt.</p>
+        <pre><code>
+            sudo env-update
+        </code></pre>
+
+        <p>The sbcl should work right now.</p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Write yourself a goroutine pool</title>
+
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        body {
+            font-family: 'Inter', Helvatica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+
+            font-size: 85%;
+            max-width: 38rem;
+            padding: 1.5rem;
+            margin: auto;
+            text-align: justify;
+            color: #1b1b1c;
+        }
+
+        header {
+            padding-bottom: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>An unicode input lexer for Topoi compiler</h1>
+        <time>Oct 20 2019</time>
+    </header>
+    <main>
+        <p>
+            A lexer (or sometimes it is called scanner) is used to turn the source code into a list of tokens that is meaningful to the computer.
+        </p>
+
+        <p>
+            Some of the parsers are scannerless where it just capture the input if any given string is a member of some rule. In some extent it is similar
+            to a recursive descent parser, but in a different interface and style. But here we choose to use the traditional method is because of these reasons:
+        </p>
+
+        <h3>It turns the time complexity of the parsing stage's constant factor low</h3>
+        <p>The lexer consume the input like strings and identifier, numbers linearly without any extra state is consider <strong>regular</strong>. Therefore it is efficient to have it done using
+            methods like <strong>DFA, delimited finite automata</strong>, or <strong>lookup tables</strong>.
+        </p>
+    </main>
+</body>
+
+</html>
