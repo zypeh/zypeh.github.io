@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning, Language Design</title>
+
+    <style>
+
+        body {
+            color: #1b1b1c;
+            font-family: Helvetica, sans-serif;
+            text-rendering: optimizeLegibility;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+        
+        article, header {
+            margin: 20px auto;
+            max-width: 70ch;
+            padding: 0 20px;
+        }
+
+        header { text-align: center; }
+        article { margin-bottom: 10vh; }
+        #title {
+            padding: 40px;
+            text-align: center;
+        }
+
+        #issue { font-size: 10px; }
+        #site  { font-weight: bold; }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin: 0 0 30px 0;
+        }
+
+        h2, h3, h4 { padding-top: 2em; }
+        h5 { margin-top: 2rem; }
+        h6 { margin-top: 5rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div id="title">
+            <div id="issue">01</div>
+            <div id="site">zypeh.net</div>
+        </div>
+        <h1>Learning, Language Design</h1>
+    </header>
+
+    <main>
+        <article>
+
+
+            <p>Here comes the second issue of my blog post! I have started my university semester, and it is going to be week 2 soon. I found that time management is far more easier if you work / study at home, without those commutes and travelling. Working / Studying online makes the time management turned into stamina management. You just got to find a method or a schedule to let yourself focus on something.</p>
+            <h3 id="spaced-repitition">Spaced repitition</h3>
+            <p><a href="https://www.gwern.net/Spaced-repetition">Spaced repetition</a> is one of the method I am attempting to practice. It is a technique for efficient memorization instead of attemping to memorize by &#39;cramming&#39;, memorization can be done far more efficient by instead spacing out each review, with increasing durations as one learns the item, with the scheduling done by software.</p>
+            <p>This is well suited for people who are balencing a job while studying for a degree. As you work on workday, you can revise previous courses at day night, and move on to new topic at weekends. This is however, need to have strong self-control and good system to review your learning. So I am trying to construct a system / schedule for my daily routine, and see if it works.</p>
+            <h3 id="a-programming-language-i-am-making">A Programming Language I am making</h3>
+            <p>I have been developing a programming language for myself while learning compiler engineering. And now I found myself falling into the pit of type theory quickly.</p>
+            <p>The language I am developing is called <strong>Topos</strong>, it comes from the Greek that refers to a method for developing arguments, and now we refer it to the category that behaves like the presheaf sets on topological spaces. Personally, I prefer the first definition as it is more understanable, and a programming langues does help us to construct arguments in some certain extend.</p>
+            <p>The initial idea was making a programming language to empower user to learn how computers work, in a designed abstraction. By adding more code incrementally and giving more <em>hints</em> to the compiler, for example, type annotation and type level programming, could increase the verified portion of program. Potentially it will do type erasure and allow performant code generated.</p>
+            <p>In topos I wished to make writing proofs easily, by building patterns and constructs on rigid theory.</p>
+            <p>I hope this can also empower more and more programmers to keep an eye on the program safety, and even more, the mathematical foundations.</p>
+            <p>To accomplish this, the programming language we make shall allow newcomers to learn mathematical thinking gradually and reduce the costs of writing safe programs in real world.</p>
+            <p>The <strong>topos compiler</strong> and the language design would be exist without the prior work of others. During the development of topos compiler I had read many other projects and here I list down the notable feature of others.</p>
+            <h5 id="haskell">Haskell</h5>
+            <ul>
+            <li>
+            <p><strong>Non-strict evaluation</strong>, it only computes when neccessary, and lots of compiler optimizations focusing on making it fast. Which is ...</p>
+            </li>
+            <li>
+            <p><strong>STG</strong>, <em>spineless tagless graph</em> reduction machine. It allows potentially out-of-order optimization being made, and implement non-strict semantics, which makes the Haskell language &#39;lazy&#39;.</p>
+            </li>
+            <li>
+            <p><strong>Rewrite rules</strong>, because of the lazy evaluation and the precense of STG IR, it allows programmer to specific a set of rules that will do aggressive expression rewrite during runtime.</p>
+            </li>
+            </ul>
+            <p>As far as I know, <a href="https://twitter.com/csaba_hruska">Scaba Hruska</a> is working on whole program optimization and strict functional languages backend, <a href="https://grin-compiler.github.io/">GRIN compiler</a>.</p>
+            <h5 id="sixty-sixten">Sixty / Sixten</h5>
+            <ul>
+            <li>
+            <strong>Command based programming / Query based compiler architectures</strong>. It used a dependent hashmap to store commands and dispatch on-demand. By implementing this in a compiler, recompiling a project after having made a few changes we only recompile what is affected by the changes
+            </li>
+            </ul>
+            <h5 id="idris-idris-2">Idris / Idris 2</h5>
+            <ul>
+            <li>
+            <p><strong>Linear types</strong>, it used the Quantitative Type Theory.</p>
+            </li>
+            <li>
+            <p><strong>Optional totality check</strong>, it provide an escape hatch for developers, making dependent typed programming practical.</p>
+            </li>
+            <li>
+            <p><strong>Multiple backend</strong>, idris recently got ported into <em>Racket</em> which runs on <em>Chez Scheme</em>.</p>
+            </li>
+            </ul>
+            <h5 id="setoidtt-previously-setoidttproto">Setoidtt (previously setoidtt-proto)</h5>
+            <ul>
+            <li>
+            <strong>Dependent types</strong>
+            </li>
+            </ul>
+            <h5 id="cyclone">Cyclone</h5>
+            <ul>
+            <li>
+            <p><strong>Region-based memory management</strong>, it replaces the use of garbage-collected memory with faster, scope-nested memory regions (arenas).</p>
+            </li>
+            <li>
+            <p><strong>Linear/affine types</strong>, an experimental application of the linear logic (substructal logic). So we can get safe, deterministic memory management without run-time GC bookkeeping costs.</p>
+            </li>
+            </ul>
+            <blockquote>
+            <p>Which also leads to the Rust&#39;s lifetime, another explicit region annotations for low level memory management strategies.</p>
+            </blockquote>
+            <h5 id="rust">Rust</h5>
+            <ul>
+            <li>
+            <p><strong>unsafe</strong> annotation, and a comprehensive handbook disccussing the black magic of compiler. Allowing programmers to write safe, performant logic which the compiler cannot verify as safe.</p>
+            </li>
+            <li>
+            <p><strong>Traits</strong>, polymorphic dispatch.</p>
+            </li>
+            </ul>
+            <h6 id="reference">Reference</h6>
+            <ul>
+            <li>
+            <a href="https://collegeinfogeek.com/spaced-repetition-memory-technique/">Spaced repetition memory technique</a>
+            </li>
+            <li>
+            <a href="https://pling.jondgoodwin.com/post/cyclone/">The Facinating Influence of Cyclone</a>
+            </li>
+            <li>
+            <a href="http://aosabook.org/en/ghc.html">The Achitecture of Open Source Applications - The GHC</a> - although the GHC had changed so much since that, it is still fun to read, to know how complex GHC is.
+            </li>
+            <li>
+            <a href="https://takenobu-hs.github.io/downloads/haskell_lazy_evaluation.pdf">Lazy evaluation illustrated for Haskell divers</a>
+            </li>
+            <li>
+            <a href="https://ollef.github.io/blog/posts/query-based-compilers.html">Query-based compiler architectures</a>
+            </li>
+            </ul>
+            
+</article>
+</main>
+
+</body>
+</html>
