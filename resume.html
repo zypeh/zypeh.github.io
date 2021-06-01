@@ -221,11 +221,18 @@
 
         <div class="title">
             <article itemscope itemtype="https://schema.org/CreativeWork">
-                <h3 itemprop="name">Topos compiler (Research project) </h3>
+                <div style="display: flex; justify-content: space-between">
+                    <h3 itemprop="name">Topos compiler (Research project) </h3>
+                    <p style="opacity: .8"><a href="https://github.com/topoi-lang/topos/tree/next">https://github.com/topoi-lang/topos/tree/next</a></p>
+                </div>
                 <meta itemprops="creator" content="Zheng Yan PEH">
                 <meta itemprop="url" content="https://github.com/topoi-lang/topos">
-                <p itemprop="about">A learn-by-doing experimental functional programming language.</p>
-                <p>It is aimed to be a dependently typed programming language which operates directly on packed data.</p>
+                <p itemprop="about">A practical functional programming language that aimed to be a dependently typed programming language which operates directly on packed data, providing toolchain for building fast and realiable applications.</p>
+                <ul style="margin-left: 1em">
+                    <li><p>Currently working on a rust version of <a href="https://ericlippert.com/2012/06/08/red-green-trees/">Roslyn's Red-Green Tree</a>, that supports incremental parsing and semantic-based highlighting.</p></li>
+                    <li><p>Prototyped non-deterministic evaluator, Normalisation-By-Evaluation in Haskell.</p></li>
+                    <li><p>Self-learning, learned a lot about function extensions and the type checking method.</p></li>
+                </ul>
             </article>
         </div>
     </section>
